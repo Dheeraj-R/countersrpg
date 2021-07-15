@@ -32,11 +32,9 @@ client.on("ready", () => {
 
 });
 
-client.on("message", message => {
+client.on("message", async (message) => {
     if (message.author.bot) return;
     
-    
-
     let rpgcount;
     let con = message.content.toLowerCase();
     if (message.guild) {
@@ -176,9 +174,11 @@ client.on("message", message => {
           .setDescription("Today's leaderboard")
           .setColor(0x00AE86);
         
-        for(const rdata of top10r) {
+        for (const rdata of top10r) {
             let total = rdata.hunts + rdata.worker + rdata.adventure + rdata.farm;
-          embed.addFields({ name: `${client.users.cache.get(rdata.user).tag} | ${total}`, value: `**hunts**: ${rdata.hunts}\n**worker**: ${rdata.worker}\n**Adventure**: ${rdata.adventure}\n**Farm**: ${rdata.farm}`});
+            const user = await client.users.cache.get(rdata.user);
+            const tag = user.tag;
+            embed.addFields({ name: `${tag} | ${total}`, value: `**hunts**: ${rdata.hunts}\n**worker**: ${rdata.worker}\n**Adventure**: ${rdata.adventure}\n**Farm**: ${rdata.farm}`});
         } 
 
         return message.channel.send({ embed });

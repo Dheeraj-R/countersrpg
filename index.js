@@ -38,16 +38,15 @@ client.on("message", message => {
     
 
     let rpgcount;
-        let con = message.content.toLowerCase();
-        if (message.guild) {
-            rpgcount = client.getCount.get(message.author.id, message.guild.id);
-            if (!rpgcount) {
-                rpgcount = { id: `${message.guild.id}-${message.author.id}`, user: message.author.id, guild: message.guild.id, hunts: 0, worker: 0, adventure: 0, farm: 0 }
-            }
-        
+    let con = message.content.toLowerCase();
+    if (message.guild) {
+        rpgcount = client.getCount.get(message.author.id, message.guild.id);
+        if (!rpgcount) {
+            rpgcount = { id: `${message.guild.id}-${message.author.id}`, user: message.author.id, guild: message.guild.id, hunts: 0, worker: 0, adventure: 0, farm: 0 }
         }
     
-
+    }
+    
     if (con.startsWith('rpg')) { //counters
         const filter = m => m.author.id == 555955826880413696
         

@@ -104,4 +104,4 @@ dist
 .tern-port
 {"mode":"full","isActive":false}
 
-rpgdata.sql*
+rpgdata.sqlite*

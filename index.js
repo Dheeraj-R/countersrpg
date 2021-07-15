@@ -5,7 +5,6 @@ const SQLite = require("better-sqlite3");
 const sql = new SQLite("./rpgdata.sqlite");
 const cron = require('node-cron');
 
-
 client.on("ready", () => {
     console.log(`${client.user.tag} Ready!`);
     // const table = sql.prepare("SELECT count(*) FROM sqlite_master WHERE type='table' AND name = 'scores';").get();
@@ -31,6 +30,11 @@ client.on("ready", () => {
     client.setCount = sql.prepare("INSERT OR REPLACE INTO rpgdata (id, user, guild, hunts, worker, adventure, farm) VALUES (@id, @user, @guild, @hunts, @worker, @adventure, @farm);");
 
 });
+
+cron.schedule('59 23 * * *', () => {
+    client.delete = sql.prepare("DELETE FROM rpgdata");
+    client.delete.run();
+})
 
 client.on("message", async (message) => {
     if (message.author.bot) return;

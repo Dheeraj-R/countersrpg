@@ -176,7 +176,7 @@ client.on("message", async (message) => {
         
         for (const rdata of top10r) {
             let total = rdata.hunts + rdata.worker + rdata.adventure + rdata.farm;
-            const user = await client.users.cache.get(rdata.user);
+            const user = await client.users.fetch(rdata.user);
             const tag = user.tag;
             embed.addFields({ name: `${tag} | ${total}`, value: `**hunts**: ${rdata.hunts}\n**worker**: ${rdata.worker}\n**Adventure**: ${rdata.adventure}\n**Farm**: ${rdata.farm}`});
         } 

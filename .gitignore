@@ -106,3 +106,4 @@ dist
 
 rpgdata.sqlite*
 config.json
+points.sqlite*

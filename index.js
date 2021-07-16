@@ -1,5 +1,6 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
+const fs = require('fs');
 const { prefix, token } = require("./config.json");
 const SQLite = require("better-sqlite3");
 const sql = new SQLite("./rpgdata.sqlite");
@@ -7,6 +8,10 @@ const cron = require('node-cron');
 
 client.on("ready", () => {
     console.log(`${client.user.tag} Ready!`);
+    client.user.setActivity("sh help", {
+        type: 'PLAYING',
+    })
+
     // const table = sql.prepare("SELECT count(*) FROM sqlite_master WHERE type='table' AND name = 'scores';").get();
     // if (!table['count(*)']) {
     //     sql.prepare("CREATE TABLE scores (id TEXT PRIMARY KEY, user TEXT, guild TEXT, points INTEGER, level INTEGER);").run();
@@ -146,7 +151,45 @@ client.on("message", async (message) => {
 	const args = message.content.slice(prefix.length).trim().split(/ +/);
     const command = args.shift().toLowerCase();
 
-    
+    if (command === 'help') {
+        if (args[0] === undefined) 
+        {
+            const helpembed = new Discord.MessageEmbed()
+                .setColor(0x00AE86)
+                .setTitle('Pendragon | Help | prefix: `sh`')
+                .setDescription('For additional info on a command, use `sh help <command name>`')
+                .addFields(
+                    {name: 'Commands', value: '`help`, `stats`, `rpgl`'}
+                )
+                .setFooter('By Iwatani Naofumi#9712')
+            message.channel.send(helpembed)
+        }
+        else {
+            fs.readFile('./helpdata.json', 'utf8', (err, data) => {
+
+                if (err) {
+                    console.log(`Error reading file from disk: ${err}`);
+                } else {
+            
+                    // parse JSON string to JSON object
+                    const hdata = JSON.parse(data);
+            
+                    
+                    hdata.forEach(db => {
+                        if (args[0] === db.name) {
+                            const embed = new Discord.MessageEmbed()
+                                .setColor('#4CC5C8')
+                                .setTitle(`${db.title}`)
+                                .setDescription(`${db.description}`)
+                                .addField("Usage", `${db.value}` )
+                            message.channel.send(embed)
+                        }
+                    });
+                }
+            
+            });
+        }
+    }
     if (command === 'stats') {
 
         let crusaderVal;

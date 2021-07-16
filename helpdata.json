@@ -1,0 +1,22 @@
+[
+    {
+        "name": "help",
+        "title": "help menu",
+        "description": "shows the help menu",
+        "value": "`sh help`"
+    },
+
+    {
+        "name": "stats",
+        "title": "Stats",
+        "description": "Displays your rpg commands current usage for today",
+        "value": "`sh stats`"
+    },
+
+    {
+        "name": "rpgl",
+        "title": "Leaderboard",
+        "description": "Shows the current top 5 Leaderboard for today",
+        "value": "`sh rpgl`"
+    }
+]

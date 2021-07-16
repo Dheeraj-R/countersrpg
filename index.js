@@ -165,7 +165,8 @@ client.on("message", async (message) => {
                 .setTitle('Pendragon | Help | prefix: `sh`')
                 .setDescription('For additional info on a command, use `sh help <command name>`')
                 .addFields(
-                    {name: 'Commands', value: '`help`, `stats`, `rpgl`'}
+                    {name: 'Commands', value: '`help`, `stats`, `rpgl`'},
+                    {name: 'Points and levels', value: '`points`, `leaderboard`'}
                 )
                 .setFooter('By Iwatani Naofumi#9712')
             message.channel.send(helpembed)
@@ -302,7 +303,7 @@ client.on("message", async (message) => {
         return message.channel.send(`${user.tag} has lost ${pointsToRemove} points and now stands at ${userscore.points} points.`);
     }
 
-    if(command === "leaderboard") {
+    if(command === "leaderboard" || command === "lb") {
         const top10 = psql.prepare("SELECT * FROM scores WHERE guild = ? ORDER BY points DESC LIMIT 10;").all(message.guild.id);
       
         const embed = new Discord.MessageEmbed()

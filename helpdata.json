@@ -18,5 +18,19 @@
         "title": "Leaderboard",
         "description": "Shows the current top 5 Leaderboard for today",
         "value": "`sh rpgl`"
+    },
+
+    {
+        "name": "points",
+        "title": "Points and Level",
+        "description": "Shows your current points and level",
+        "value": "`sh points`"
+    },
+
+    {
+        "name": "leaderboard",
+        "title": "Leaderboard",
+        "description": "Shows the current top 10 users with most points",
+        "value": "`sh leaderboard` or `sh lb`"
     }
 ]

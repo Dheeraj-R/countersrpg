@@ -137,12 +137,16 @@ client.on("message", async (message) => {
         }   
     }
 
-    if (message.channel.id === '778171308043141140') {
+    if (message.channel.id === '778171308043141140') { //general x2
         score.points++;
         score.points++;
     }
     else{
-        score.points++;
+        let toadd = Math.floor(Math.random()*10);
+        console.log(toadd)
+        if (toadd > 5) {
+            score.points++;
+        }
     }
     const curLevel = Math.floor(0.1* Math.sqrt(score.points));
     

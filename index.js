@@ -142,8 +142,10 @@ client.on("message", async (message) => {
         score.points++;
     }
     else{
+        if (message.content === 'ff' || message.content === 'Ff') 
+            return;
         let toadd = Math.floor(Math.random()*10);
-        console.log(toadd)
+        
         if (toadd > 5) {
             score.points++;
         }

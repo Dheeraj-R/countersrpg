@@ -101,9 +101,7 @@ client.on("message", async (message) => {
                     return;
                 if (msg.content.includes("you can't do this"))
                     return;
-                if (msg.content.includes("you cannot send another"))
-                    return;
-                if (msg.content.includes("Check the progress of your pet"))
+                if (con.includes('pet') || con.includes('pets'))
                     return;
                 rpgcount.adventure++;
             }

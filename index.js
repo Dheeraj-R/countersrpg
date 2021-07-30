@@ -156,7 +156,13 @@ client.on("message", async (message) => {
     
     if (score.level < curLevel) {
         score.level++;
-        message.reply(`You've leveled up to level **${curLevel}**!`);
+        const embed = new Discord.MessageEmbed()
+            .setColor('0080ff')
+            .setTitle(message.author.username)
+            .setThumbnail(message.author.avatarURL())
+            .setDescription(`You've leveled up to level **${curLevel}**!`)
+            .setFooter('Herensuge')
+        message.reply(embed);
     }
 
     client.setScore.run(score);

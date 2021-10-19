@@ -105,5 +105,5 @@ dist
 {"mode":"full","isActive":false}
 
 rpgdata.sqlite*
-config.json
+
 points.sqlite*
